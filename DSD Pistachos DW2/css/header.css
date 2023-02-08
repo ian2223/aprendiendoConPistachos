@@ -1,0 +1,256 @@
+header {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+}
+
+.slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider__item {
+    width: calc(100% - 16%);
+    display: flex;
+    margin-inline: 8%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.slider__image {
+    inset: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.slider__image img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.slider__image::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #000000b3;
+    backdrop-filter: blur(2px);
+    z-index: 2;
+}
+
+.slider__image[activo] {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.slider__image[activo] img {
+    animation: zoomIn 8s forwards alternate;
+}
+
+@keyframes zoomIn {
+    to {
+        transform: scale(1.15);
+    }
+}
+
+.slider__item h2 {
+    font-size: calc(2rem + 3vw);
+    color: #fff;
+    margin: 0 0 20px 0;
+}
+
+.slider__item h2 span {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: var(--verde);
+    -webkit-text-stroke-width: 3px;
+}
+
+.slider__item h2::before, .slider__item h2::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    background: var(--verde);
+    width: 60%;
+    height: 2px;
+    border-radius: 10px;
+}
+
+.slider__item h2::after {
+    bottom: -5px;
+    width: 40%;
+}
+
+@keyframes cargarBarra {
+    to {
+        width: 100%;
+    }
+}
+
+.slider__item p {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 200;
+    margin-bottom: 30px;
+    line-height: 1.75;
+    max-width: 600px;
+    width: 100%;
+}
+
+.referencia {
+    display: flex;
+    position: absolute;
+    z-index: 10;
+    bottom: 0px;
+    gap: 20px;
+}
+
+.referencia__item {
+    padding: 10px 20px;
+    background: #181818be;
+    color: #ffffff96;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    transition: .2s ease;
+    text-align: center;
+    user-select: none;
+    opacity: .7;
+}
+
+.referencia__item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #ffffff96;
+    transition: .2s ease;
+}
+
+.referencia__item p {
+    user-select: none;
+    pointer-events: none;
+    margin: 0;
+}
+
+.referencia__item:hover {
+    color: var(--verde);
+}
+
+.referencia__item:hover:before {
+    background: var(--verde);
+}
+
+.referencia__item.activo {
+    transform: translateY(-5px);
+    color: var(--verde);
+    pointer-events: none;
+    opacity: 1;
+}
+
+.referencia__item.activo::before {
+    height: 5px;
+    transform: translateY(5px);
+    background: var(--verde);
+    transition: .3s ease;
+}
+
+[revelar] {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 20;
+}
+
+[revelar] > h2, [revelar] > p, [revelar] .btn-bubble {
+    opacity: 0;
+    transform: translateX(calc(50px + 2vw * var(--delay)));
+    animation: fadeRight .5s ease forwards;
+    animation-delay: calc(var(--delay) * .2s);
+}
+
+@keyframes fadeRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 768px) {
+    .referencia {
+        padding: 20px 30px;
+        gap: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 15px 15px 0 0;
+    }
+
+    .referencia__item {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        padding: 0;
+        background: #fff;
+    }
+
+    .referencia__item p, .referencia__item::before {
+        display: none;
+    }
+
+    .referencia__item.activo {
+        background: var(--verde);
+        width: 30px;
+        border-radius: 50px;
+        transform: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .slider__item h2 {
+        font-size: calc(2rem + 1vw);
+    }
+
+    .slider__item h2 span {
+        -webkit-text-stroke-width: 2px;
+    }
+
+    .slider__item p {
+        font-size: 14px;
+    }
+
+    .btn-bubble {
+        width: 160px;
+        height: 40px;
+    }
+
+    .btn-bubble p {
+        font-size: 14px;
+    }
+
+    .slider__image::before {
+        background: #00000083;
+    }
+}

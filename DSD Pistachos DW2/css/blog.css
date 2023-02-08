@@ -1,0 +1,297 @@
+@import url('./nav.css');
+@import url('./footer.css');
+@import url('./acerca.css');
+@import url('./blog/cuerpo.css');
+@import url('./blog/aside.css');
+@import url('./blog/impresion.css');
+
+
+:root {
+    --verde: #0bda73;
+    --texto-verde: #19b969;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+    background: #e9e9e9;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: underline;
+    color: inherit;
+    cursor: pointer;
+}
+
+button,
+input {
+    border: none;
+    outline: none;
+    font-family: inherit;
+    background: none;
+    cursor: pointer;
+}
+
+.blog-pantalla {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    transition: .5s ease;
+    background: var(--verde);
+    z-index: 10000;
+}
+
+.blog-pantalla.activo {
+    top: 100%;
+    pointer-events: none;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #2c2c2c;
+}
+
+.banner {
+    margin-top: 80px;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-image: url('../img/blog/header.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: 3;
+}
+
+.banner-titulo {
+    width: 100%;
+    height: calc(100vh - 80px);
+    position: absolute;
+    top: 0;
+    margin-top: 80px;
+    overflow: hidden;
+}
+
+.banner-titulo .inicio {
+    font-size: calc(2rem + 1.5vw);
+    color: #181818c2;
+    position: absolute;
+    padding: 10px;
+    border-radius: 50%;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    z-index: 10;
+    opacity: .75;
+    transition: .3s ease;
+}
+
+.banner-titulo .inicio:hover {
+    opacity: 1;
+}
+
+.banner-titulo .inicio:active {
+    color: var(--texto-verde);
+    opacity: 1;
+}
+
+.banner-titulo p {
+    position: absolute;
+    right: -25%;
+    bottom: 30px;
+    font-size: calc(4rem + 3vw);
+    font-weight: 800;
+    text-transform: lowercase;
+    background: linear-gradient(180deg, #000, transparent);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    z-index: 5;
+    width: max-content;
+    margin: 0;
+}
+
+.banner-titulo p span {
+    margin-right: 15px;
+}
+
+.banner-titulo .icono {
+    position: absolute;
+    top: 30px;
+    right: 100px;
+    font-size: 6rem;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    color: #0eec7d;
+}
+
+.banner-titulo .icono ion-icon {
+    --ionicon-stroke-width: 50px;
+    position: absolute;
+    top: -15px;
+    animation: bounceBanner 1s ease-in-out infinite;
+}
+
+.banner-titulo .icono ion-icon:nth-child(2) {
+    top: 15px;
+}
+
+@keyframes bounceBanner {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+main {
+    display: flex;
+    gap: 50px;
+    margin-top: 25vh;
+}
+
+.compartir {
+    position: absolute;
+    top: calc(120vh + 80px);
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.compartir h2::before {
+    content: "";
+    width: 40vh;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--texto-verde);
+    position: absolute;
+    right: -42vh;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.compartir h2 {
+    transform: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1rem;
+    color: var(--texto-verde);
+    margin-bottom: 80px;
+    position: relative;
+    transform: rotate(-90deg);
+}
+
+
+.compartir__item {
+    width: max-content;
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    font-size: 20px;
+    color: #fff;
+    background: var(--texto-verde);
+    margin-bottom: 15px;
+    transition: .3s ease;
+}
+
+.compartir__item ion-icon {
+    pointer-events: none;
+    --ionicon-stroke-width: 40px;
+}
+
+.compartir__item:hover {
+    background: #181818;
+}
+
+.aviso-copiado {
+    padding: 10px 30px;
+    background: #222222c9;
+    backdrop-filter: blur(5px);
+    border-radius: 50px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--verde);
+    position: fixed;
+    top: 15vh;
+    left: 4vw;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 1010;
+    opacity: 0;
+    transition: .3s ease;
+}
+
+.aviso-copiado.activo {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.volver-arriba {
+    position: fixed;
+    left: 30px;
+    bottom: -100%;
+    padding: 15px;
+    border-radius: 50%;
+    display: flex;
+    background: var(--verde);
+    font-size: 24px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s ease;
+}
+
+.volver-arriba:hover {
+    background: #181818;
+}
+
+.volver-arriba:hover ion-icon {
+    animation: bounce .5s ease forwards;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.volver-arriba.activo {
+    bottom: 30px;
+    pointer-events: all;
+}
