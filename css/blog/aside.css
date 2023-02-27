@@ -1,0 +1,145 @@
+/* Main Derecha */
+aside {
+    width: 30%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.novedades {
+    width: 100%;
+    max-width: 220px;
+    padding: 8vh 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 15px;
+    color: #fff;
+    background: linear-gradient(-90deg, #51aaca, #783cd8);
+    box-shadow: 0 0 20px 2px #00000027;
+}
+
+.novedades h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0;
+}
+
+.novedades>p {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #dadada;
+}
+
+.btn-secundario {
+    background: #fff;
+    color: var(--texto-verde);
+}
+
+.btn-secundario p {
+    color: var(--texto-verde)
+}
+
+.btn-secundario span {
+    background: var(--verde)
+}
+
+.btn-secundario:hover p {
+    color: #fff
+}
+
+.btn-secundario:active {
+    outline-color: var(--verde)
+}
+
+/* Índice */
+.indice {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    max-width: calc(220px - 20px);
+    width: 100%;
+    margin-top: 40px;
+    padding: 30px;
+    background: var(--verde);
+    border-radius: 12px;
+    position: sticky;
+    top: calc(80px + 5vh);
+}
+
+.indice h2 {
+    font-size: 2rem;
+    margin: 0 0 10px 0;
+    color: #fff;
+    letter-spacing: 1px;
+    font-weight: 600;
+    position: relative;
+}
+
+.indice h2::before {
+    content: "";
+    width: 20px;
+    height: 4px;
+    border-radius: 5px;
+    background: #ffffffec;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.indice__item {
+    font-size: 14px;
+    text-decoration: none;
+    padding: 10px;
+    background: #ffffffdc;
+    border-radius: 6px;
+    width: calc(100% - 20px);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: .3s ease;
+}
+
+@media screen and (min-width: 1050px) {
+    button.menu {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    aside {
+        position: fixed;
+        height: calc(100vh - 180px);
+        width: calc(100% - 10%);
+        left: -110%;
+        top: 80px;
+        background: #e7e7e7e0;
+        backdrop-filter: blur(5px);
+        flex-direction: row-reverse;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 50px;
+        z-index: 5000;
+        padding: 50px 5%;
+        overflow-y: auto;
+        transition: .5s ease;
+    }
+
+    aside.activo {
+        left: 0;
+    }
+
+    .novedades, .indice {
+        height: max-content;
+        margin: 0;
+        width: 100%;
+        max-width: 300px;
+        position: static;
+    }
+}
